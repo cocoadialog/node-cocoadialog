@@ -1,0 +1,43 @@
+{
+  "name": "cocoadialog",
+  "version": "1.0.0",
+  "description": "Node.js wrapper for cocoaDialog",
+  "main": "index.js",
+  "engines": {
+    "node": ">=5"
+  },
+  "files": [
+    "cocoaDialog.app",
+    "index.js",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unicorn-fail/node-cocoadialog.git"
+  },
+  "keywords": [
+    "box",
+    "cocoa",
+    "cocoadialog",
+    "dialog",
+    "gui",
+    "mac",
+    "macos",
+    "prompt",
+    "util",
+    "utility",
+    "window"
+  ],
+  "author": "Mark Carver",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unicorn-fail/node-cocoadialog/issues"
+  },
+  "homepage": "https://github.com/unicorn-fail/node-cocoadialog#readme",
+  "dependencies": {
+    "any-promise": "^1.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0"
+  }
+}
