@@ -1,6 +1,6 @@
 {
   "name": "cocoadialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js wrapper for cocoaDialog",
   "main": "index.js",
   "engines": {
@@ -9,7 +9,8 @@
   "files": [
     "cocoaDialog.app",
     "index.js",
-    "lib"
+    "Core",
+    "Dialog"
   ],
   "repository": {
     "type": "git",
