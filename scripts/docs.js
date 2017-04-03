@@ -14,7 +14,7 @@ Docma.create()
     ],
     dest: './docs',
     app: {
-      base: 'https://unicorn-fail.github.io/node-cocoadialog/',
+      base: '/node-cocoadialog',
       title: `${pkg.name} (node.js)`,
       routing: 'query',
       entrance: 'content:guide'
