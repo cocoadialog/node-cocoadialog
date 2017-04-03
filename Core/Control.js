@@ -10,6 +10,10 @@ const CocoaDialogTimeout = require('./CocoaDialogTimeout');
 const ControlResult = require('./ControlResult');
 const emitter = require('./EventEmitter');
 
+// Helper function to determine if control being constructed is a valid test
+// control which is used to test the base Control class.
+const isTestControl = name => (typeof global.it === 'function' && (name === 'Control' || name === 'FileControl' || name === 'ThreeButtonControl'));
+
 const controls = [
   'checkbox', 'dropdown', 'filesave', 'fileselect', 'inputbox', 'msgbox',
   'notify', 'ok-msgbox', 'progressbar', 'radio', 'secure-inputbox',
@@ -28,7 +32,7 @@ class Control {
    *   Options to initialize control with.
    */
   constructor(name, ...options) {
-    if (!name || controls.indexOf(name) === -1) {
+    if (!isTestControl(name) && (!name || controls.indexOf(name) === -1)) {
       throw new CocoaDialogError('The provided argument is not valid CocoaDialog control:' + name);
     }
 
@@ -68,15 +72,14 @@ class Control {
    */
   availableOptions() {
     return {
-      // General
+      // Global.
       debug: false,
-      verbose: false,
       timeout: -1,
       timeoutFormat: '',
       stringOutput: false,
       noNewline: false,
 
-      // Panel
+      // Panel.
       close: false,
       height: -1,
       minimize: false,
@@ -87,14 +90,14 @@ class Control {
       title: '',
       width: -1,
 
-      // Icon
+      // Icon.
       icon: '',
       iconBundle: '',
-      iconType: '',
       iconFile: '',
+      iconHeight: -1,
       iconSize: -1,
-      iconWidth: -1,
-      iconHeight: -1
+      iconType: '',
+      iconWidth: -1
     };
   }
 
@@ -117,13 +120,25 @@ class Control {
   /**
    * Enables control debugging.
    *
-   * @param {Boolean} debug=true
-   *   Flag determining whether debugging is enabled.
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
    *
    * @return {Control}
    */
-  debug(debug = true) {
-    return this.setOption('debug', debug);
+  debug(enabled = true) {
+    return this.setOption('debug', enabled);
+  }
+
+  /**
+   * Makes the control float above all windows.
+   *
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   *
+   * @return {Control}
+   */
+  float(enabled = true) {
+    return this.setOption('noFloat', !enabled);
   }
 
   /**
@@ -146,6 +161,9 @@ class Control {
 
       let value = this.options[name];
 
+      // Convert camelCase properties into dashed CLI argument names.
+      name = name.replace(/[A-Z][a-z0-9-]+/g, (match, offset) => (offset ? '-' : '') + match.toLowerCase());
+
       // Handle multiple values.
       if (Array.isArray(value)) {
         let values = [];
@@ -164,9 +182,6 @@ class Control {
       else if (typeof value !== 'string' && typeof value !== 'number' && typeof value !== 'boolean') {
         continue;
       }
-
-      // Convert camelCase properties into dashed CLI argument names.
-      name = name.replace(/[A-Z].+/g, (match, offset) => (offset ? '-' : '') + match.toLowerCase());
 
       // Boolean based options get set without values.
       if (typeof value === 'boolean') {
@@ -545,15 +560,15 @@ class Control {
   }
 
   /**
-   * Sets control return output format.
+   * Sets whether control should return string values instead of integers.
    *
-   * @param {Boolean} stringOutput=true
-   *   Flag determining whether output from cocoaDialog is returned as strings.
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
    *
    * @return {Control}
    */
-  stringOutput(stringOutput = true) {
-    return this.setOption('stringOutput', stringOutput);
+  stringOutput(enabled = true) {
+    return this.setOption('stringOutput', enabled);
   }
 
 }

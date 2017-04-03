@@ -1,17 +1,13 @@
-const Control = require('../Core/Control');
 const Promise = require('any-promise');
+const Control = require('../Core/Control');
 const CocoaDialogAbort = require('../Core/CocoaDialogAbort');
 const ProgressBarResult = require('./ProgressBarResult');
-
 const emitter = require('../Core/EventEmitter');
 
 class ProgressBar extends Control {
 
   /**
-   * Constructs the Progress instance.
-   *
-   * @param {...Object} [options]
-   *   Options to initialize control with.
+   * @inheritDoc
    */
   constructor(...options) {
     super('progressbar', ...options);
@@ -27,20 +23,6 @@ class ProgressBar extends Control {
      * @type {ProgressBar~itemIterator}
      */
     this.itemIterator = Control.noop;
-
-    /**
-     * The current percentage.
-     *
-     * @type {Number}
-     */
-    this.percent = this.options.percent || 0;
-
-    /**
-     * The current text being displayed.
-     *
-     * @type {String}
-     */
-    this.text = this.options.text || '';
   }
 
   /**
@@ -63,6 +45,18 @@ class ProgressBar extends Control {
   }
 
   /**
+   * Sets whether the control has indeterminate progress.
+   *
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   *
+   * @return {Control.<ProgressBar>}
+   */
+  indeterminate(enabled = true) {
+    return this.setOption('indeterminate', enabled);
+  }
+
+  /**
    * @inheritDoc
    */
   openSync() {
@@ -78,6 +72,9 @@ class ProgressBar extends Control {
     return super.openSync();
   }
 
+  /**
+   * @inheritDoc
+   */
   open() {
     return new Promise((resolve, reject) => {
       this.on('result', resolve).on('error', reject).openSync();
@@ -93,7 +90,7 @@ class ProgressBar extends Control {
           }
           return this.itemIterator(item, i, total, this);
         }).then(() => {
-          this.setText(this.text + ' done!').setPercent(i + 1, total);
+          this.setText(this.options.text + ' done!').setPercent(i + 1, total);
           return item;
         });
       }).then(items => {
@@ -104,26 +101,18 @@ class ProgressBar extends Control {
   }
 
   /**
+   * Sets the items to process once control has opened.
    *
-   * @param items
+   * @param {Array} items
+   *   An array of items to process.
    * @param {ProgressBar~itemIterator} iterator
+   *   The iterator that will be called to process each item.
    *
    * @return {ProgressBar}
    */
   processItems(items, iterator) {
     this.items = Array.from(items);
     this.itemIterator = iterator;
-    return this;
-  }
-
-  /**
-   * @return {ProgressBar}
-   */
-  setText(text) {
-    if (this.text !== text) {
-      this.text = text;
-      return this.update();
-    }
     return this;
   }
 
@@ -141,42 +130,65 @@ class ProgressBar extends Control {
     if (total) {
       percent = 100 / total * percent;
     }
-    percent = Math.round(percent);
-    if (this.percent !== percent) {
-      this.percent = percent;
-      return this.update();
-    }
-    return this;
+    return this.setOption('percent', Math.round(percent)).update();
   }
 
   /**
-   * Indicates whether progress can be stopped.
+   * Sets the current text and, if open, updating the display.
    *
-   * @param {Boolean} [stoppable=true]
+   * @param {String} [text='']
+   *   The text to set.
    *
-   * @return {Control}
+   * @return {ProgressBar}
    */
-  setStoppable(stoppable = true) {
-    return this.setOption('stoppable', stoppable);
+  setText(text = '') {
+    return this.setOption('text', text).update();
   }
 
   /**
+   * Sets whether the control can be stopped.
+   *
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   *
+   * @return {Control.<ProgressBar>}
+   */
+  stoppable(enabled = true) {
+    return this.setOption('stoppable', enabled);
+  }
+
+  /**
+   * Updates the control's display of the current options.
+   *
    * @return {ProgressBar}
    */
   update() {
+    // Immediately return if aborted or there is no child process.
+    if (this.aborted || !this.childProcess) {
+      return this;
+    }
+
     emitter.emit('beforeUpdate', this);
-    this.write(this.percent + ' ' + this.text);
+    this.write(this.options.percent + ' ' + this.options.text);
     emitter.emit('update', this);
     return this;
   }
 
   /**
+   * Writes to the child process of the control.
+   *
+   * @param {String} string
+   *   The string to send.
+   *
    * @return {ProgressBar}
    */
   write(string) {
-    if (!this.aborted && this.childProcess) {
-      this.childProcess.stdin.write(`${string}\n`);
+    // Immediately return if aborted or there is no child process.
+    if (this.aborted || !this.childProcess) {
+      return this;
     }
+
+    this.childProcess.stdin.write(`${string}\n`);
     return this;
   }
 

@@ -1,12 +1,34 @@
-const ThreeButtonControl = require('../Core/ThreeButtonControl');
+const MsgBox = require('./MsgBox');
 
-class YesNoMsgBox extends ThreeButtonControl {
+class YesNoMsgBox extends MsgBox {
 
   /**
-   * {@inheritDoc}
+   * @inheritDoc
    */
-  constructor(options) {
-    super('yesno-msgbox', options);
+  constructor(...options) {
+    super(...options);
+    this.name = 'yesno-msgbox';
+  }
+
+  /**
+   * @inheritDoc
+   */
+  availableOptions() {
+    let options = super.availableOptions();
+    options.noCancel = false;
+    return options;
+  }
+
+  /**
+   * Sets whether control will show the "Cancel" button.
+   *
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   *
+   * @return {Control.<OkMsgBox>}
+   */
+  noCancel(enabled = true) {
+    return this.setOption('noCancel', enabled);
   }
 
 }

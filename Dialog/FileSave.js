@@ -1,12 +1,10 @@
-const Control = require('../Core/Control');
+const FileControl = require('../Core/FileControl');
+const FileSaveResult = require('./FileSaveResult');
 
-class FileSave extends Control {
+class FileSave extends FileControl {
 
   /**
-   * Constructs the FileSave instance.
-   *
-   * @param {...Object} [options]
-   *   Options to initialize control with.
+   * @inheritDoc
    */
   constructor(...options) {
     super('filesave', ...options);
@@ -15,17 +13,28 @@ class FileSave extends Control {
   /**
    * @inheritDoc
    */
-  processResult(result) {
-    result = super.processResult(result);
+  availableOptions() {
+    let options = super.availableOptions();
+    options.noCreateDirectories = false;
+    return options;
+  }
 
-    // Set the filename property.
-    result.filename = result.lines.filter(Boolean).shift();
-    delete result.lines;
+  /**
+   * @inheritDoc
+   *
+   * @return {Control.<FileSave>}
+   */
+  createDirectories(enabled = false) {
+    return super.createDirectories(enabled).setOption('noCreateDirectories', !enabled);
+  }
 
-    // Set aborted state based on if a filename was provided.
-    this.aborted = !result.filename;
-
-    return result;
+  /**
+   * @inheritDoc
+   *
+   * @return {FileSaveResult}
+   */
+  getResult() {
+    return new FileSaveResult(this);
   }
 
 }

@@ -31,19 +31,6 @@ class MsgBox extends ThreeButtonControl {
     return this.setOption('alert', message);
   }
 
-
-  /**
-   * Sets the label for the dialog.
-   *
-   * @param {String} message
-   *   The message to set.
-   *
-   * @return {Control.<MsgBox>}
-   */
-  setLabel(message) {
-    return this.setOption('label', message);
-  }
-
 }
 
 module.exports = MsgBox;

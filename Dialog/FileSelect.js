@@ -1,13 +1,10 @@
-const Control = require('../Core/Control');
+const FileControl = require('../Core/FileControl');
 const FileSelectResult = require('./FileSelectResult');
 
-class FileSelect extends Control {
+class FileSelect extends FileControl {
 
   /**
-   * Constructs the FileSelect instance.
-   *
-   * @param {...Object} [options]
-   *   Options to initialize control with.
+   * @inheritDoc
    */
   constructor(...options) {
     super('fileselect', ...options);
@@ -18,8 +15,12 @@ class FileSelect extends Control {
    */
   availableOptions() {
     let options = super.availableOptions();
+    options.allowedFiles = '';
+    options.selectDirectories = false;
+    options.selectOnlyDirectories = false;
+    options.noSelectDirectories = false;
     options.selectMultiple = false;
-    options.withExtensions = '';
+    options.noSelectMultiple = false;
     return options;
   }
 
@@ -31,27 +32,49 @@ class FileSelect extends Control {
   }
 
   /**
-   * Sets the allowed extensions types that can be selected.
+   * Sets whether the control can select directories.
    *
-   * @param {String|Array} extensions
-   *   A string or array of strings that indicate which extensions are allowed.
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   * @param {Boolean} [onlyDirectories=true]
+   *   Flag determining whether this option is enabled.
    *
    * @return {Control.<FileSelect>}
    */
-  setExtensions(extensions) {
-    return this.setOption('withExtensions', [].concat(extensions))
+  selectDirectories(enabled = true, onlyDirectories = false) {
+    return this
+      .setOption('selectDirectories', enabled)
+      .setOption('noSelectDirectories', !enabled)
+      .setOption('selectOnlyDirectories', enabled && onlyDirectories);
   }
 
   /**
-   * Sets the multiple file select option.
+   * Sets whether the control can select multiple files.
    *
-   * @param {Boolean} [multiple=true]
-   *   Flag enabling or disabling multiple file selections.
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
    *
    * @return {Control.<FileSelect>}
    */
-  setMultiple(multiple = true) {
-    return this.setOption('selectMultiple', multiple);
+  selectMultiple(enabled = true) {
+    return this
+      .setOption('selectMultiple', enabled)
+      .setOption('noSelectMultiple', !enabled);
+  }
+
+  /**
+   * Sets the allowed files.
+   *
+   * Note: this is primarily only useful when setting the allowed extensions
+   * to ".", which allows files the have on extension to be selected.
+   *
+   * @param {Array} [files]
+   *   The files to allow.
+   *
+   * @return {Control.<FileSelect>}
+   */
+  setAllowedFiles(files = []) {
+    return this.setOption('allowedFiles', files);
   }
 
 }

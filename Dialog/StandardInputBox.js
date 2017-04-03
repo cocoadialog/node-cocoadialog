@@ -1,12 +1,34 @@
-const ThreeButtonControl = require('../Core/ThreeButtonControl');
+const InputBox = require('./InputBox');
 
-class StandardInputBox extends ThreeButtonControl {
+class StandardInputBox extends InputBox {
 
   /**
-   * {@inheritDoc}
+   * @inheritDoc
    */
-  constructor(options) {
-    super('standard-inputbox', options);
+  constructor(...options) {
+    super(...options);
+    this.name = 'standard-inputbox';
+  }
+
+  /**
+   * @inheritDoc
+   */
+  availableOptions() {
+    let options = super.availableOptions();
+    options.noCancel = false;
+    return options;
+  }
+
+  /**
+   * Sets whether control will show the "Cancel" button.
+   *
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   *
+   * @return {Control.<OkMsgBox>}
+   */
+  noCancel(enabled = true) {
+    return this.setOption('noCancel', enabled);
   }
 
 }

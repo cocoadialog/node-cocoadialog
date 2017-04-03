@@ -1,12 +1,13 @@
-const ThreeButtonControl = require('../Core/ThreeButtonControl');
+const InputBox = require('./InputBox');
 
-class SecureInputBox extends ThreeButtonControl {
+class SecureInputBox extends InputBox {
 
   /**
-   * {@inheritDoc}
+   * @inheritDoc
    */
-  constructor(options) {
-    super('secure-inputbox', options);
+  constructor(...options) {
+    super(...options);
+    this.name = 'secure-inputbox';
   }
 
 }

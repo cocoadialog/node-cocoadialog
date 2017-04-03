@@ -5,15 +5,6 @@ class ThreeButtonControl extends Control {
 
   /**
    * @inheritDoc
-   *
-   * @return {ThreeButtonControlResult}
-   */
-  getResult() {
-    return new ThreeButtonControlResult(this);
-  }
-
-  /**
-   * @inheritDoc
    */
   availableOptions() {
     let options = super.availableOptions();
@@ -28,6 +19,16 @@ class ThreeButtonControl extends Control {
   }
 
   /**
+   * @inheritDoc
+   *
+   * @return {ThreeButtonControlResult}
+   */
+  getResult() {
+    return new ThreeButtonControlResult(this);
+  }
+
+  /**
+   * Sets the buttons for the control.
    *
    * @param {...String} buttons
    *   The button labels.
@@ -42,6 +43,41 @@ class ThreeButtonControl extends Control {
       }
     });
     return this;
+  }
+
+  /**
+   * Sets the text to display if a control requires a value.
+   *
+   * @param {String} [text='']
+   *
+   * @return {Control.<ThreeButtonControl>}
+   */
+  setEmptyText(text = '') {
+    return this.setOption('emptyText', text);
+  }
+
+  /**
+   * Sets the label for the dialog.
+   *
+   * @param {String} [label='']
+   *   The label to set.
+   *
+   * @return {Control.<ThreeButtonControl>}
+   */
+  setLabel(label = '') {
+    return this.setOption('label', label);
+  }
+
+  /**
+   * Sets whether control requires a value.
+   *
+   * @param {Boolean} [enabled=true]
+   *   Flag determining whether this option is enabled.
+   *
+   * @return {Control.<ThreeButtonControl>}
+   */
+  valueRequired(enabled = true) {
+    return this.setOption('valueRequired', enabled);
   }
 
 }
