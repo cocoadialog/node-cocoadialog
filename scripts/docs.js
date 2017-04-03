@@ -14,6 +14,7 @@ Docma.create()
     ],
     dest: './docs',
     app: {
+      base: 'https://unicorn-fail.github.io/node-cocoadialog/'
       title: `${pkg.name} (node.js)`,
       routing: 'query',
       entrance: 'content:guide'
@@ -37,17 +38,17 @@ Docma.create()
         navItems: [
           {
             label: 'Getting Started',
-            href: './',
+            href: '/',
             iconClass: 'ico-target4'
           },
           {
             label: 'API',
-            href: './?api',
+            href: '/?api',
             iconClass: 'ico-book'
           },
           {
             label: 'Examples',
-            href: './?content=examples',
+            href: '/?content=examples',
             iconClass: 'ico-mouse-pointer'
           },
           {
