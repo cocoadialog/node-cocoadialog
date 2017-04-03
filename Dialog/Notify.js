@@ -1,5 +1,12 @@
 const Control = require('../Core/Control');
 
+/**
+ * @class Notify
+ *
+ * Constructs a Notify control.
+ *
+ * @extends Control
+ */
 class Notify extends Control {
 
   /**

@@ -1,5 +1,12 @@
 const ThreeButtonControlResult = require('../Core/ThreeButtonControlResult');
 
+/**
+ * @class InputResult
+ *
+ * Constructs a result object for input based controls.
+ *
+ * @extends ThreeButtonControlResult
+ */
 class InputResult extends ThreeButtonControlResult {
 
   /**

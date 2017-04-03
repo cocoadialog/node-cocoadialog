@@ -343,7 +343,7 @@ describe('Control', function () {
   test.control(SecureInputBox, [Control, ThreeButtonControl, InputBox], [ControlResult, ThreeButtonControlResult, InputResult]);
 
   // SecureStandardInputBox.
-  test.control(SecureStandardInputBox, [Control, ThreeButtonControl, StandardInputBox], [ControlResult, ThreeButtonControlResult, InputResult]);
+  test.control(SecureStandardInputBox, [Control, ThreeButtonControl, InputBox, StandardInputBox], [ControlResult, ThreeButtonControlResult, InputResult]);
 
   // Slider.
   test.control(Slider, [Control, ThreeButtonControl], [ControlResult, ThreeButtonControlResult, InputResult], function (instance) {

@@ -1,5 +1,13 @@
 const ThreeButtonControl = require('../Core/ThreeButtonControl');
 
+/**
+ * @class MsgBox
+ *
+ * Constructs a MsgBox control.
+ *
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class MsgBox extends ThreeButtonControl {
 
   /**

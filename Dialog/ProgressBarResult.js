@@ -1,5 +1,12 @@
 const ControlResult = require('../Core/ControlResult');
 
+/**
+ * @class ProgressBarResult
+ *
+ * Constructs a result object for the ProgressBar control.
+ *
+ * @extends ControlResult
+ */
 class ProgressBarResult extends ControlResult {
 
   /**

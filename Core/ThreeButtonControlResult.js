@@ -1,5 +1,12 @@
 const ControlResult = require('./ControlResult');
 
+/**
+ * @class ThreeButtonControlResult
+ *
+ * Constructs a result object for a three button based control.
+ *
+ * @extends ControlResult
+ */
 class ThreeButtonControlResult extends ControlResult {
 
   /**

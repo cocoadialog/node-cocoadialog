@@ -1,6 +1,14 @@
 const ThreeButtonControl = require('../Core/ThreeButtonControl');
 const InputResult = require('./InputResult');
 
+/**
+ * @class Slider
+ *
+ * Constructs a Slider control.
+ *
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class Slider extends ThreeButtonControl {
 
   /**
@@ -40,7 +48,7 @@ class Slider extends ThreeButtonControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {InputResult}
    */

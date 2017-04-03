@@ -1,5 +1,12 @@
 const Control = require('./Control');
 
+/**
+ * @class FileControl
+ *
+ * Constructs a file based control.
+ *
+ * @extends Control
+ */
 class FileControl extends Control {
 
   /**

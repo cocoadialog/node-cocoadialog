@@ -1,5 +1,14 @@
 const DropDown = require('./DropDown');
 
+/**
+ * @class StandardDropDown
+ *
+ * Constructs a StandardDropDown control.
+ *
+ * @extends DropDown
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class StandardDropDown extends DropDown {
 
   /**

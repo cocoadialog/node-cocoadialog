@@ -1,10 +1,25 @@
+/**
+ * @class CocoaDialogAbort
+ *
+ * Constructs a cocoaDialog based error message.
+ *
+ * @extends Error
+ */
 class CocoaDialogError extends Error {
 
-  constructor(message, id) {
+  /**
+   * Constructs a new instance.
+   *
+   * @param {String} message
+   *   The message to display.
+   * @param {...*} [args]
+   *   Additional arguments to pass onto Error.
+   */
+  constructor(message, ...args) {
     if (typeof message === 'string') {
       message = message.replace('cocoaDialog Error: ', '');
     }
-    super(message, id);
+    super(message, ...args);
     this.name = this.constructor.name;
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, this.constructor);

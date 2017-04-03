@@ -1,5 +1,14 @@
 const InputBox = require('./InputBox');
 
+/**
+ * @class SecureInputBox
+ *
+ * Constructs a SecureInputBox control.
+ *
+ * @extends InputBox
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class SecureInputBox extends InputBox {
 
   /**

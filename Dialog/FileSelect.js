@@ -1,6 +1,14 @@
 const FileControl = require('../Core/FileControl');
 const FileSelectResult = require('./FileSelectResult');
 
+/**
+ * @class FileSelect
+ *
+ * Constructs a FileSelect control.
+ *
+ * @extends FileControl
+ * @extends Control
+ */
 class FileSelect extends FileControl {
 
   /**
@@ -25,7 +33,9 @@ class FileSelect extends FileControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
+   *
+   * @return {FileSelectResult}
    */
   getResult() {
     return new FileSelectResult(this);

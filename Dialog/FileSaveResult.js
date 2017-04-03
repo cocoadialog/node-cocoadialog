@@ -1,5 +1,12 @@
 const ControlResult = require('../Core/ControlResult');
 
+/**
+ * @class FileSaveResult
+ *
+ * Constructs a result object for the FileSave control.
+ *
+ * @extends ControlResult
+ */
 class FileSaveResult extends ControlResult {
 
   /**

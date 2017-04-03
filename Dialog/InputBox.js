@@ -1,6 +1,14 @@
 const ThreeButtonControl = require('../Core/ThreeButtonControl');
 const InputResult = require('./InputResult');
 
+/**
+ * @class InputBox
+ *
+ * Constructs a InputBox control.
+ *
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class InputBox extends ThreeButtonControl {
 
   /**
@@ -34,7 +42,7 @@ class InputBox extends ThreeButtonControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {InputResult}
    */

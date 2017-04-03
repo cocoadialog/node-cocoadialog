@@ -1,6 +1,14 @@
 const ThreeButtonControl = require('../Core/ThreeButtonControl');
 const CheckBoxResult = require('./CheckBoxResult');
 
+/**
+ * @class CheckBox
+ *
+ * Constructs a CheckBox control.
+ *
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class CheckBox extends ThreeButtonControl {
 
   /**
@@ -25,7 +33,7 @@ class CheckBox extends ThreeButtonControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {CheckBoxResult}
    */

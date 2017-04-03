@@ -21,15 +21,22 @@ const controls = [
   'standard-inputbox', 'textbox', 'yesno-msgbox'
 ];
 
+/**
+ * @class Control
+ *
+ * The base class for all controls.
+ */
 class Control {
 
   /**
-   * Constructs a Control instance.
+   * Constructs a new instance.
    *
    * @param {String} name
    *   The name of the control.
    * @param {...Object} [options]
-   *   Options to initialize control with.
+   *   One or more option objects to initialize control with.
+   *
+   * @constructor
    */
   constructor(name, ...options) {
     if (!isTestControl(name) && (!name || controls.indexOf(name) === -1)) {
@@ -205,6 +212,11 @@ class Control {
     return args;
   }
 
+  /**
+   * Creates a new result object for the control.
+   *
+   * @return {ControlResult}
+   */
   getResult() {
     return new ControlResult(this);
   }

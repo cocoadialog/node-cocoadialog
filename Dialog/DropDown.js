@@ -1,6 +1,14 @@
 const ThreeButtonControl = require('../Core/ThreeButtonControl');
 const InputResult = require('./InputResult');
 
+/**
+ * @class DropDown
+ *
+ * Constructs a DropDown control.
+ *
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class DropDown extends ThreeButtonControl {
 
   /**
@@ -35,7 +43,7 @@ class DropDown extends ThreeButtonControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {InputResult}
    */

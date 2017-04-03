@@ -1,6 +1,14 @@
 const FileControl = require('../Core/FileControl');
 const FileSaveResult = require('./FileSaveResult');
 
+/**
+ * @class FileSave
+ *
+ * Constructs a FileSave control.
+ *
+ * @extends FileControl
+ * @extends Control
+ */
 class FileSave extends FileControl {
 
   /**
@@ -29,7 +37,7 @@ class FileSave extends FileControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {FileSaveResult}
    */

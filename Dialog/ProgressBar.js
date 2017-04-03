@@ -4,6 +4,13 @@ const CocoaDialogAbort = require('../Core/CocoaDialogAbort');
 const ProgressBarResult = require('./ProgressBarResult');
 const emitter = require('../Core/EventEmitter');
 
+/**
+ * @class ProgressBar
+ *
+ * Constructs a ProgressBar control.
+ *
+ * @extends Control
+ */
 class ProgressBar extends Control {
 
   /**
@@ -38,7 +45,9 @@ class ProgressBar extends Control {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
+   *
+   * @return {ProgressBarResult}
    */
   getResult() {
     return new ProgressBarResult(this);

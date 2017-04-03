@@ -1,5 +1,14 @@
 const InputBox = require('./InputBox');
 
+/**
+ * @class StandardInputBox
+ *
+ * Constructs a StandardInputBox control.
+ *
+ * @extends InputBox
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class StandardInputBox extends InputBox {
 
   /**

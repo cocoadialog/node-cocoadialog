@@ -1,6 +1,14 @@
 const ThreeButtonControl = require('../Core/ThreeButtonControl');
 const RadioResult = require('./RadioResult');
 
+/**
+ * @class Radio
+ *
+ * Constructs a Radio control.
+ *
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class Radio extends ThreeButtonControl {
 
   /**
@@ -38,7 +46,7 @@ class Radio extends ThreeButtonControl {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {RadioResult}
    */

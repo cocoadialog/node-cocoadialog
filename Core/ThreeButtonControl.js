@@ -1,7 +1,21 @@
 const Control = require('./Control');
 const ThreeButtonControlResult = require('./ThreeButtonControlResult');
 
+/**
+ * @class ThreeButtonControl
+ *
+ * The base class for all three button controls.
+ *
+ * @extends Control
+ */
 class ThreeButtonControl extends Control {
+
+  /**
+   * @inheritDoc
+   */
+  constructor(name, ...options) {
+    super(name, ...options);
+  }
 
   /**
    * @inheritDoc
@@ -19,7 +33,7 @@ class ThreeButtonControl extends Control {
   }
 
   /**
-   * @inheritDoc
+   * Creates a new result object for the control.
    *
    * @return {ThreeButtonControlResult}
    */

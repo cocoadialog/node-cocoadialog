@@ -1,5 +1,12 @@
 const ThreeButtonControlResult = require('../Core/ThreeButtonControlResult');
 
+/**
+ * @class CheckBoxResult
+ *
+ * Constructs a result object for the CheckBox control.
+ *
+ * @extends ThreeButtonControlResult
+ */
 class CheckBoxResult extends ThreeButtonControlResult {
 
   /**

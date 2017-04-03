@@ -261,4 +261,7 @@ class CocoaDialog {
 
 }
 
+/**
+ * @type {CocoaDialog}
+ */
 module.exports = new CocoaDialog();

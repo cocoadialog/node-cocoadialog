@@ -6,10 +6,20 @@ const CocoaDialogTimeout = require('./CocoaDialogTimeout');
 
 const trimRegExp = new RegExp(`^\n*|\n*$`);
 
+/**
+ * @class ControlResult
+ *
+ * Constructs the base result object for a control.
+ */
 class ControlResult {
 
   /**
+   * Construct a new instance.
+   *
    * @param {Control} control
+   *   The control this result belongs to.
+   *
+   * @constructor
    */
   constructor(control) {
     this.control = control;

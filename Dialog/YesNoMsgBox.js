@@ -1,5 +1,14 @@
 const MsgBox = require('./MsgBox');
 
+/**
+ * @class YesNoMsgBox
+ *
+ * Constructs a YesNoMsgBox control.
+ *
+ * @extends MsgBox
+ * @extends ThreeButtonControl
+ * @extends Control
+ */
 class YesNoMsgBox extends MsgBox {
 
   /**

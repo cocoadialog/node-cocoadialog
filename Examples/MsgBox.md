@@ -1,5 +1,7 @@
-//const cocoaDialog = require('cocoadialog');
-const cocoaDialog = require('../index').setGlobalOption({
+# MsgBox
+
+```js
+const cocoaDialog = require('cocoadialog').setGlobalOption({
   debug: process.argv.indexOf('--debug') !== -1,
   stringOutput: true
 });
@@ -98,3 +100,4 @@ msgBox.open()
   })
 
 ;
+```

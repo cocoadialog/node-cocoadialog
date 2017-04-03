@@ -1,0 +1,51 @@
+
+<html><head></head><body><h1 id="cocoadialog">cocoadialog</h1>
+<hr />
+<blockquote>
+<p>Node.js wrapper for <a href="http://mstratman.github.io/cocoadialog/#documentation3.0">cocoaDialog</a></p>
+</blockquote>
+<p><strong>Note:</strong> Issues with the actual cocoaDialog application should be filed in its <a href="https://github.com/mstratman/cocoadialog/issues">issue queue</a>.</p>
+<h2 id="install">Install</h2>
+<pre><code>$ npm install --save cocoadialog
+</code></pre><h2 id="basic-usage">Basic Usage</h2>
+<pre><code class="lang-js">const cocoaDialog = require('cocoadialog').setGlobalOption({
+  stringOutput: true
+});
+
+cocoaDialog.msgBox()
+  .setTitle('This is the title')
+  .setIcon('caution')
+  .setLabel('This is the label')
+  .setButtons('Ok', 'Cancel', 'More')
+  .open()
+  .then(result =&gt; {
+    if (result.button === 'Ok') {
+      console.log('Ok button was clicked.');
+    }
+    else if (result.button === 'More') {
+      console.log('More button was clicked.');
+    }
+  })
+  .catch(result =&gt; {
+    if (result.hasAborted()) {
+      console.log('Cancel button was clicked.');
+    }
+    else {
+      console.error(result.error);
+    }
+  });
+</code></pre>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<p><strong>Note:</strong> You can append the <code>--debug</code> flag at the end of these examples for
+extremely verbose console output.</p>
+<ul>
+<li><a href="./Examples/MsgBox.js">MsgBox.js</a> - <code>node ./Examples/MsgBox.js</code></li>
+<li><a href="./Examples/ProgressBar.js">ProgressBar.js</a> - <code>node ./Examples/ProgressBar.js</code></li>
+</ul>
+<h2 id="api">API</h2>
+<p>WIP</p>
+<h4 id="options">options</h4>
+<p>WIP</p>
+<h2 id="license">License</h2>
+<p>MIT © <a href="https://github.com/markcarver">Mark Carver</a></p>
+</body></html>
