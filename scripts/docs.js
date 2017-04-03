@@ -1,5 +1,6 @@
 const Docma = require('docma');
 const pkg = require('../package.json');
+const base = '/node-cocoadialog';
 
 Docma.create()
   .build({
@@ -14,7 +15,7 @@ Docma.create()
     ],
     dest: './docs',
     app: {
-      base: '/node-cocoadialog',
+      base: base,
       title: `${pkg.name} (node.js)`,
       routing: 'query',
       entrance: 'content:guide'
@@ -38,17 +39,17 @@ Docma.create()
         navItems: [
           {
             label: 'Getting Started',
-            href: '/',
+            href: base,
             iconClass: 'ico-target4'
           },
           {
             label: 'API',
-            href: '/?api',
+            href: `${base}/?api`,
             iconClass: 'ico-book'
           },
           {
             label: 'Examples',
-            href: '/?content=examples',
+            href: `${base}/?content=examples`,
             iconClass: 'ico-mouse-pointer'
           },
           {
