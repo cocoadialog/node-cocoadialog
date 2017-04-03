@@ -43,22 +43,15 @@ cocoaDialog.msgBox()
   });
 ```
 
-## Advanced Usage
+## Examples
 
-**Note:** You can append the `--debug` flag at the end of these examples for
-extremely verbose console output.
-
-- [MsgBox.js](./Examples/MsgBox.js) - `node ./Examples/MsgBox.js`
-- [ProgressBar.js](./Examples/ProgressBar.js) - `node ./Examples/ProgressBar.js`
+* [MsgBox](https://unicorn-fail.github.io/node-cocoadialog/?content=msgbox)
+* [ProgressBar](https://unicorn-fail.github.io/node-cocoadialog//?content=progressbar)
 
 
 ## API
 
-WIP
-
-#### options
-
-WIP
+[API Documentation](https://unicorn-fail.github.io/node-cocoadialog/?api)
 
 ## License
 
