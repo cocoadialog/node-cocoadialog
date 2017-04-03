@@ -21,11 +21,12 @@ let progressBar;
 
 // Configure the dialog.
 progressBar = cocoaDialog.progressBar()
+  .stoppable()
   .setIcon('gear')
   .setTimeout(60, `You'd better hurry! %r left...`)
   .setTitle('This is the title')
-  .setStoppable()
 
+  // Process the following items once it's open.
   .processItems(itemsToProcess, (item, i, total, progressBar) => {
     let label = `Processing #${i + 1}...`;
     progressBar.setText(label);
