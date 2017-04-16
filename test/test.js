@@ -394,3 +394,22 @@ describe('Control', function () {
   });
 
 });
+
+describe('JSON', function () {
+  let promise;
+
+  before(function () {
+    let control = new Control('Control');
+    control.getArguments = () => ['--color', 0, '--help', '--output', 'json'];
+    promise = control.open()
+      .then(result => JSON.parse(result.raw.stdout))
+      .catch(result => done(result.error));
+  });
+
+  it('should parse global options', function () {
+    return promise.then(json => {
+      assert.ok('JSON successfully parsed');
+    });
+  });
+});
+
