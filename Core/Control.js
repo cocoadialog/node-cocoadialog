@@ -285,13 +285,13 @@ class Control {
     this.childProcess.stderr.on('data', buffer => {
       result.currentLine = buffer.toString();
       emitter.emit('stderr', result);
-      result.raw.stderr = result.currentLine;
+      result.raw.stderr += result.currentLine;
     });
 
     this.childProcess.stdout.on('data', buffer => {
       result.currentLine = buffer.toString();
       emitter.emit('stdout', result);
-      result.raw.stdout = result.currentLine;
+      result.raw.stdout += result.currentLine;
     });
 
     this.childProcess.on('error', err => {
