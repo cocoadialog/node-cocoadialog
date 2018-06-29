@@ -589,8 +589,8 @@ Control.getBin = () => {
   let bin = null;
   let paths = [
     process.env.COCOADIALOG_BIN,
-    path.resolve(__dirname, '..', 'CocoaDialog.app/Contents/MacOS/cocoaDialog'),
-    path.join(__dirname, 'CocoaDialog.app/Contents/MacOS/cocoaDialog'),
+    path.resolve(__dirname, '..', 'cocoaDialog.app/Contents/MacOS/cocoaDialog'),
+    path.join(__dirname, 'cocoaDialog.app/Contents/MacOS/cocoaDialog'),
     '/Applications/cocoaDialog.app/Contents/MacOS/cocoaDialog'
   ];
   paths.forEach(path => {
